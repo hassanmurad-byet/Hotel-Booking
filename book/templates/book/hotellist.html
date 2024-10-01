@@ -1,0 +1,117 @@
+{% extends "book/layout.html" %}
+{% load static %}
+{% load book_extras %}
+
+{% block body %}
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <div class="menu ">
+            <ul class="list">
+                <li class="active">
+                    <a href="{% url 'dashboard' %}">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'hotel_list' %}">
+                        <span>Hotel List</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'customer_list' %}" class="">
+                     
+                        <span>Customer List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'booking_list' %}" class="">
+                        <span>Booking </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{% url 'report' %}">
+                        <span>Report</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</section>
+
+<section class="content" id="top">
+        <div class="block-header">
+            <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <h2>HOTELS</h2>
+                        </div>
+                        <div class="table-responsive" style="overflow: auto; max-height: 475px">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="">
+                                    <a href="{% url 'add_hotel' %}" class="btn btn-success btn btn-lg">Add New Product</a>
+                                    <tr style="text-align: center" class="">
+                                        <th style="text-align: center; width: 10%"> Name</th>
+                                        <th style="text-align: center; width: 10%">City</th>
+                                        <th style="text-align: center; width: 10%">Address</th>
+                                        <th style="text-align: center; width: 20%">Overview</th>
+                                        <th style="text-align: center; width: 10%">Highlight</th>
+                                        <th style="text-align: center; width: 10%">Room</th>
+                                        <th style="text-align: center; width: 10%">Room Type</th>
+                                        <th style="text-align: center; width: 10%">Rating</th>
+                                        <th style="text-align: center; width: 10%">Price</th>
+                                        <th style="text-align: center; width: 10%">Image</th>
+                                        <th style="text-align: center; width: 10%">Edit</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for hotel in totalhotel %}
+                                    <tr>
+                                        <td style="text-align: center">{{hotel.name}}</td>
+                                        <td style="text-align: center">{{hotel.city}}</td>
+                                        <td style="text-align: center">{{hotel.address}}</td>
+                                        <td style="text-align: center">{{hotel.overview}}</td>
+                                        <td style="text-align: center">{{hotel.highlight}}</td>
+                                        <td style="text-align: center">{{hotel.room}}</td>
+                                        <td style="text-align: center">{{hotel.room_type}}</td>
+                                        <td style="text-align: center">{{hotel.rating}}</td>
+                                        <td style="text-align: center">{{hotel.price}}</td>
+
+                                        <td><img src="{{ hotel.image.url }}" alt="{{ product.title }} Image"
+                                            width="100">
+                                    </td>
+                                    <td><a href="{% url 'update_hotel' pk=hotel.pk %}"
+                                            class="btn btn-info btn-sm">Update</a>
+                                        <hr>
+                                        <a href="{% url 'delHotel' del_id=hotel.id %}"
+                                            class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+
+                                    </tr>
+                                    {% endfor %}
+                            
+                        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+</section>
+
+{% endblock %}

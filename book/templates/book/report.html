@@ -1,0 +1,222 @@
+{% extends "book/layout.html" %}
+{% load static %}
+{% load book_extras %}
+
+{% block body %}
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <div class="menu ">
+            <ul class="list">
+                <li class="active">
+                    <a href="{% url 'dashboard' %}">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'hotel_list' %}">
+                        <span>Hotel List</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'customer_list' %}" class="">
+                     
+                        <span>Customer List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'booking_list' %}" class="">
+                        <span>Booking </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{% url 'report' %}">
+                        <span>Report</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</section>
+
+
+
+<section class="content" id="top">
+        <div class="block-header">
+            <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <h1>Total Booking Report</h1>
+                        </div>
+                        <div class="table-responsive" style="overflow: auto; max-height: 475px">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="">
+                                    <tr style="text-align: center" class="">
+                                        <th style="text-align: center; width: 10%">Hotel</th>
+                                        <th style="text-align: center; width: 10%">Tracking_id</th>
+
+                                        <th style="text-align: center; width: 10%">Email</th>              
+                                        <th style="text-align: center; width: 10%">Phone</th>    
+
+
+                                        <th style="text-align: center; width: 10%">Booking_date</th>  
+                                                    
+                                        <th style="text-align: center; width: 10%">Price</th>              
+                          
+                                                 
+
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in booking %}
+                                    <tr>
+                                        <td style="text-align: center">{{book.hotel}}</td>
+                                        <td style="text-align: center">{{book.tracking_id}}</td>
+                                        <td style="text-align: center">{{book.email}}</td>
+                                        <td style="text-align: center">{{book.phone}}</td>
+                                        <td style="text-align: center">{{book.booking_date}}</td>
+                                        <td style="text-align: center">{{book.price}}</td>
+                               
+                                    </tr>
+                                    {% endfor %}
+                            
+                        
+                                </tbody>
+                                
+                            </table>
+                            <h2 class="bg-red">Toral Revenue of Hotel Booking = {{total_price}}</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row clearfix">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <h1>Last Month Booking Report</h1>
+                        </div>
+                        <div class="table-responsive" style="overflow: auto; max-height: 475px">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="">
+                                    <tr style="text-align: center" class="">
+                                        <th style="text-align: center; width: 10%">Hotel</th>
+                                        <th style="text-align: center; width: 10%">Tracking_id</th>
+
+                                        <th style="text-align: center; width: 10%">Email</th>              
+                                        <th style="text-align: center; width: 10%">Phone</th>    
+
+
+                                        <th style="text-align: center; width: 10%">Booking_date</th>  
+                                                    
+                                        <th style="text-align: center; width: 10%">Price</th>              
+                          
+                                                 
+
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in last_month_book %}
+                                    <tr>
+                                        <td style="text-align: center">{{book.hotel}}</td>
+                                        <td style="text-align: center">{{book.tracking_id}}</td>
+                                        <td style="text-align: center">{{book.email}}</td>
+                                        <td style="text-align: center">{{book.phone}}</td>
+                                        <td style="text-align: center">{{book.booking_date}}</td>
+                                        <td style="text-align: center">{{book.price}}</td>
+                               
+                                    </tr>
+                                    {% endfor %}
+                            
+                        
+                                </tbody>
+                                
+                            </table>
+                            <h2 class="bg-blue">Last Month Total Revenue = {{last_month}}</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row clearfix">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <h1>Last 24h Total Booking Report</h1>
+                        </div>
+                        <div class="table-responsive" style="overflow: auto; max-height: 475px">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="">
+                                    <tr style="text-align: center" class="">
+                                        <th style="text-align: center; width: 10%">Hotel</th>
+                                        <th style="text-align: center; width: 10%">Tracking_id</th>
+
+                                        <th style="text-align: center; width: 10%">Email</th>              
+                                        <th style="text-align: center; width: 10%">Phone</th>    
+
+
+                                        <th style="text-align: center; width: 10%">Booking_date</th>  
+                                                    
+                                        <th style="text-align: center; width: 10%">Price</th>              
+                          
+                                                 
+
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in bookings_last24h %}
+                                    <tr>
+                                        <td style="text-align: center">{{book.hotel}}</td>
+                                        <td style="text-align: center">{{book.tracking_id}}</td>
+                                        <td style="text-align: center">{{book.email}}</td>
+                                        <td style="text-align: center">{{book.phone}}</td>
+                                        <td style="text-align: center">{{book.booking_date}}</td>
+                                        <td style="text-align: center">{{book.price}}</td>
+                               
+                                    </tr>
+                                    {% endfor %}
+                            
+                        
+                                </tbody>
+                                
+                            </table>
+                            <h2 class="bg-green">last 24h Revenue  = {{last_day}}</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+</section>
+
+{% endblock %}

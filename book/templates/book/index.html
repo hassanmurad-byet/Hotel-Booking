@@ -1,0 +1,165 @@
+{% extends "book/layout.html" %}
+{% load static %}
+{% load book_extras %}
+
+{% block body %}
+<!-- Section: Slider -->
+<section class="slider">
+    <ul class="slides">
+        <li>
+            <img src="{% static 'book/images/front_page.jpg' %}">
+            <!-- random image -->
+            <div class="caption right-align">
+                <h2 class="" style="color: rgb(184, 24, 64);">Take Your Dream Vacation</h2>
+            </div>
+        </li>
+        <li>
+            <img src="{% static 'book/images/coxs.jpg' %}">
+            <!-- random image -->
+            <div class="caption right-align">
+                <h2 class="mycolor-text">We Work With All Budgets</h2>
+            </div>
+        </li>
+        <li>
+            <img src="{% static 'book/images/meg4.jpeg' %}">
+            <!-- random image -->
+            <div class="caption right-align">
+                <h2 class="" style="color: rgb(255, 255, 255);">Group & Individual Getaways</h2>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<!-- Section: Search -->
+<section id="search" class="section section-search bg-pink white-text center scrollspy">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3>Search Hotels</h3>
+                <form action="/search" method="get">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input type="text" name="q" class="white grey-text autocomplete"
+                            placeholder="Kuakata, Sajek, Cox .... ">
+                        <input type="submit" style="visibility: hidden;" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- destination 1 -->
+<section>
+
+    <h4 class="center">
+        <span class="bg-red">Popular</span> Destinations
+    </h4>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col l6 m4">
+                <a href="{% url 'hotels_in_kuakata' %}" class="card" style="display: block;">
+                    <div class="card-image">
+                        <img src="{% static 'book/images/kuakata.jpg' %}" height="180px" alt="">
+                        <span class="card-title">Kuakata Sea Batch </span>
+                        <!-- {{hotel.name}} -->
+                    </div>
+                    <div class="card-content truncate black-text">
+                    </div>
+                </a>
+            </div>
+            <!-- destination 2 -->
+
+            <div class="col l6 m4">
+                <a href="{% url 'hotels_in_coxs' %}" class="card" style="display: block;">
+                    <div class="card-image">
+                        <img src="{% static 'book/images/coxs.jpg' %}" height="180px" alt="">
+                        <span class="card-title">Cox's Bazar Sea Batch</span>
+                        <!-- {{hotel.name}} -->
+                    </div>
+                    <div class="card-content truncate black-text">
+                    </div>
+                </a>
+            </div>
+        </div>
+     
+
+             <!-- destination 2 -->
+         <div class="row">
+             <div class="col l6 m4">
+                <a href="{% url 'hotels_in_saint' %}" class="card" style="display: block;">
+                    <div class="card-image">
+                        <img src="{% static 'book/images/saint.jpg' %}" height="180px" alt="">
+                        <span class="card-title">Saint Martin  </span>
+                        <!-- {{hotel.name}} -->
+                    </div>
+                    <div class="card-content truncate black-text">
+                    </div>
+                </a>
+            </div> 
+
+            <div class="col l6 m4">
+                <a href="{% url 'hotels_in_sajek' %}" class="card" style="display: block;">
+                    <div class="card-image">
+                        <img src="{% static 'book/images/sajek.jpg' %}" height="180px" alt="">
+                        <span class="card-title"> Sajek Belly </span>
+                        <!-- {{hotel.name}} -->
+                    </div>
+                    <div class="card-content truncate black-text">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+      
+    </div>
+</section>
+
+<!-- destination 2 -->
+
+
+
+
+
+<!-- Section: Popular Places -->
+<!-- <section id="popular" class="section section-popular scrollspy"> -->
+
+<div class="container">
+    <div class="row">
+
+        <!-- {% for hotel in popular %} -->
+
+        <!-- {% endfor %} -->
+    </div>
+</div>
+
+
+<!-- </section> -->
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    const slider = document.querySelector('.slider');
+    M.Slider.init(slider, {
+        indicators: false,
+        height: 400,
+        transition: 500,
+        interval: 6000
+    });
+
+    {% if message %}
+    M.toast({ html: 'Welcome! here {{user.first_name.capitalize}}', displayLength: 6000, classes: 'mycolor-text' })
+    {% endif %}
+
+</script>
+{% endblock %}
